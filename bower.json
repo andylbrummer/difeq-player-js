@@ -1,0 +1,38 @@
+{
+  "name": "demo",
+  "version": "0.1.0",
+  "authors": [
+    "andylbrummer <andybrummer@standardbeagle.com>"
+  ],
+  "description": "Interactive javascript demos",
+  "main": "demo.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "difeq",
+    "demo"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.3.2",
+    "bootstrap": "~3.3.1",
+    "bootstrap-slider": "*",
+    "modernizr": "~2.8.3",
+    "blob": "*",
+    "canvas-toBlob": "https://github.com/eligrey/canvas-toBlob.js.git",
+    "fileSaver": "https://github.com/eligrey/FileSaver.js.git",
+    "angular-bootstrap-slider": "~0.0.8"
+  },
+  "resolutions": {
+    "seiyria-bootstrap-slider": "~3.1.0"
+  }
+}

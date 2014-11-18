@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of app</title>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" />
+
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/blob/blob.js"></script>
+    <script src="../bower_components/canvas-toBlob/canvas-toBlob.js"></script>
+    <script src="../bower_components/fileSaver/fileSaver.min.js"></script>
+    <script src="../bower_components/angularjs/angular.min.js"></script>
+    <script src="../bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+    <script src="../bower_components/angular-bootstrap-slider/slider.js"></script>
+
+    <script src="../build/dist/cotm-demo.js"></script>
+    <style>
+        canvas, body {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: thin solid black;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .code {
+            float: right;
+            width: 400px;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        .ctrl-parameters input[type='text'] {
+            width: 75px;
+        }
+
+        .ctrl-parameters input[type='range'] {
+            width: 175px;
+        }
+        :-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div data-ng-app="app">
+        <div ng-init="graph = { params: { a:[0.5, 0.001, 1.5]}, func: 'y, a*(1-x*x)*y-x, 0.03' }; state = { running: true, t:0}; rng=[-4, 4, -4, 4]; bg='rgba(60,179,113,0.05)'; ls='#ffd700'; count=3000" ng-controller="windCtrl">
+            <canvas width="600" height="600" data-path-render="graph.paths" data-range="rng" data-background-style="bg" data-line-style="ls"></canvas>
+            <cm-demo cm-demo="advance()" filename="van-der-pol.png" running="state.running"></cm-demo>
+            <div data-wind data-f="graph.func" data-values="graph.values" data-paths="graph.paths" data-model="graph.model" data-t="state.t" data-count="count" data-range="rng"></div>
+            <div data-parameters="graph.params" data-values="graph.values"></div>
+        </div>
+    </div>
+    <script>
+        angular
+            .module('app', ['paramApp', 'cmDemo', 'ui.bootstrap-slider'])
+            .controller('windCtrl', function ($scope) {
+                $scope.advance = function (t) {
+                    $scope.$apply(function () {
+                        $scope.state.t += 0.01;
+                    });
+                }
+            });
+    </script>
+</body>
+</html>
