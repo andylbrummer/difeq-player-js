@@ -77,7 +77,7 @@ angular
             scope: {
                 drawTrace: '='
             },
-            controller: function ($scope, $element) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.$watch("drawTrace.t", function () {
                     if (!$scope.draw || !$scope.drawTrace)
                         return;
@@ -99,6 +99,6 @@ angular
                     }
                     ctx.stroke();
                 }
-            }
+            }]
         }
     });

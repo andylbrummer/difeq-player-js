@@ -9,11 +9,11 @@ var functionPathBuilder = function (func, extraScope) {
     return {
         restrict: 'A',
         scope: scope,
-        controller: function ($scope, $element, $attrs) {
+        controller: ['$scope', '$attrs', function ($scope, $attrs) {
             $scope.$watch('t', function () { func($scope, $attrs); });
             $scope.$watch('f', function () { func($scope, $attrs); });
             $scope.$watch('values', function () { func($scope, $attrs); }, true);
-        }
+        }]
     };
 };
 
@@ -28,7 +28,7 @@ angular
                 values: '='
             },
             template: '<ul class="ctrl-parameters"><li ng-repeat="p in values"><input type="text" ng-model="p.name"><div style="display:inline-block;width:100px;" slider use-decimals max="{{p.max}}" min="{{p.min}}" step="{{p.step}}" ng-model="p.value"></div><input type="text" ng-model="p.value"></li></ul>',
-            controller: function ($element, $scope) {
+            controller: ['$scope', function ($scope) {
                 $scope.setValues = function () {
                     var values = [];
                     $.each($scope.parameters, function (key, value) {
@@ -37,7 +37,7 @@ angular
                     return $scope.values = values;
                 }
                 $scope.setValues();
-            }
+            }]
         }
     })
     .directive('pathRender', function () {
@@ -50,7 +50,7 @@ angular
                 backgroundStyle: '=',
                 range: '=' // [minX, maxX, minY, maxY]
             },
-            controller: function ($scope, $element) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 var c = $element[0];
                 var ctx = c.getContext('2d');
                 var range = $scope.range || [-1, 1, -1, 1];
@@ -78,7 +78,7 @@ angular
                 $scope.$watch('pathRender', function (val) {
                     if (val && val.length && val.length > 0) drawPaths(val);
                 });
-            }
+            }]
         }
     })
     .directive('densityRender', function () {
@@ -87,7 +87,7 @@ angular
             scope: {
                 densityRender: '='
             },
-            controller: function ($scope, $element, $attrs) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 var c = $element[0];
                 var ctx = c.getContext('2d');
                 var dx = c.width / 2;
@@ -116,7 +116,7 @@ angular
                 $scope.$watch('densityRender', function (val) {
                     if (val && val.length && val.length > 0) plot(val);
                 });
-            }
+            }]
         }
     })
     .directive('graph', function () {
@@ -365,7 +365,7 @@ angular
             scope: {
                 drawTrace: '='
             },
-            controller: function ($scope, $element) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.$watch("drawTrace.t", function () {
                     if (!$scope.draw || !$scope.drawTrace)
                         return;
@@ -387,7 +387,7 @@ angular
                     }
                     ctx.stroke();
                 }
-            }
+            }]
         }
     });
 //differential solvers.
