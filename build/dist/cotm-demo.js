@@ -389,7 +389,14 @@ angular
                 }
             }]
         }
-    });
+    })
+    .controller('windCtrl', [ '$scope', function ($scope) {
+        $scope.advance = function (t) {
+            $scope.$apply(function () {
+                $scope.state.t += 0.01;
+            });
+        }
+    }]);
 //differential solvers.
 
 Array.prototype.scale = function (s) {

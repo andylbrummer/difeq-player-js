@@ -64,14 +64,7 @@
     </div>
     <script>
         angular
-            .module('app', ['paramApp', 'cmDemo', 'ui.bootstrap-slider'])
-            .controller('windCtrl', function ($scope) {
-                $scope.advance = function (t) {
-                    $scope.$apply(function () {
-                        $scope.state.t += 0.01;
-                    });
-                }
-            });
+            .module('app', ['paramApp', 'cmDemo', 'ui.bootstrap-slider']);
     </script>
 </body>
 </html>
