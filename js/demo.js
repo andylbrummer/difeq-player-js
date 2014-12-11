@@ -57,12 +57,12 @@ angular
                             canvas.width = scope.startSize.width;
                             canvas.height = scope.startSize.height;
                         }
-                        $.each(events, function (i, v) {
+                        jQuery.each(events, function (i, v) {
                             document.removeEventListener(v, checkFullSize);
                         });
                     };
 
-                    $.each(events, function (i, v) {
+                    jQuery.each(events, function (i, v) {
                         document.addEventListener(v, checkFullSize);
                     });
 

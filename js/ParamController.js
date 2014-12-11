@@ -181,12 +181,12 @@ angular
             try {
                 if (!$scope.f || !$scope.values) return;
 
-                var p = $.map($scope.values, function (x) { return x.name + '=' + x.value; });
-                var params = $.map($scope.values, function (x) { return x.name; });
+                var p = jQuery.map($scope.values, function (x) { return x.name + '=' + x.value; });
+                var params = jQuery.map($scope.values, function (x) { return x.name; });
                 var functions = [];
 
                 var ff = $scope.f;
-                if (!$.isArray(ff)) ff = [ff];
+                if (!jQuery.isArray(ff)) ff = [ff];
 
                 for (var j = 0; j < ff.length; ++j) {
                     var body = 'var ' + p + ';return ' + ff[j] + ';';
@@ -206,8 +206,8 @@ angular
                 if (!$scope.f || !$scope.values) return;
 
                 var model = $scope.model || {};
-                var p = $.map($scope.values, function (x) { return x.name + '=' + x.value; });
-                var params = $.map($scope.values, function (x) { return x.name; });
+                var p = jQuery.map($scope.values, function (x) { return x.name + '=' + x.value; });
+                var params = jQuery.map($scope.values, function (x) { return x.name; });
                 var functions = [];
 
                 var range = $scope.range || [-1, 1, -1, 1];
@@ -215,7 +215,7 @@ angular
                 var sy = range[3] - range[2], dy = range[2];
 
                 var ff = $scope.f;
-                if (!$.isArray(ff)) ff = [ff];
+                if (!jQuery.isArray(ff)) ff = [ff];
                 var body = 'var x = v[0], y = v[1], t = v[2], ' + p + '; return [' + ff[0] + '];';
                 model.live_f = new Function(['v'], body);
 
@@ -249,8 +249,8 @@ angular
                     if (!$scope.f || !$scope.values) return;
 
                     var model = $scope.model || {};
-                    var p = $.map($scope.values, function (x) { return x.name + '=' + x.value; });
-                    var params = $.map($scope.values, function (x) { return x.name; });
+                    var p = jQuery.map($scope.values, function (x) { return x.name + '=' + x.value; });
+                    var params = jQuery.map($scope.values, function (x) { return x.name; });
                     var functions = [];
 
                     var range = $scope.range || [-1, 1, -1, 1];
@@ -258,7 +258,7 @@ angular
                     var sy = range[3] - range[2], dy = range[2];
 
                     var ff = $scope.f;
-                    if (!$.isArray(ff)) ff = [ff];
+                    if (!jQuery.isArray(ff)) ff = [ff];
                     var body = 'var x = v[0], y = v[1], vx = v[2], vy = v[3], t = v[4], ' + p + '; return [' + ff[0] + '];';
                     model.live_f = new Function(['v'], body);
 
