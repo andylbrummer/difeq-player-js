@@ -1,11 +1,13 @@
 {
   "name": "difeq-player-js",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "authors": [
     "andylbrummer <andybrummer@standardbeagle.com>"
   ],
   "description": "An angularjs directive for displaying differential equations inspired by Wind Map from http://hint.fm",
-  "main": ["build/dist/cotm-demo.min.js"],
+  "main": [
+    "build/dist/cotm-demo.min.js"
+  ],
   "moduleType": [
     "node"
   ],
