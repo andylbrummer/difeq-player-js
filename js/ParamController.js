@@ -31,7 +31,7 @@ angular
             controller: ['$scope', function ($scope) {
                 $scope.setValues = function () {
                     var values = [];
-                    $.each($scope.parameters, function (key, value) {
+                    jQuery.each($scope.parameters, function (key, value) {
                         values.push({ name: key, value: value[0] || 0, min: value[1] || -1, max: value[2] || 1, step: value[3] || 0.05 });
                     });
                     return $scope.values = values;
@@ -124,12 +124,12 @@ angular
             try {
                 if (!$scope.f || !$scope.values) return;
 
-                var p = $.map($scope.values, function (x) { return parseFloat(x.value); });
-                var params = $.map($scope.values, function (x) { return x.name; });
+                var p = jQuery.map($scope.values, function (x) { return parseFloat(x.value); });
+                var params = jQuery.map($scope.values, function (x) { return x.name; });
                 var paths = [];
 
                 var ff = $scope.f;
-                if (!$.isArray(ff)) ff = [ff];
+                if (!jQuery.isArray(ff)) ff = [ff];
 
                 for (var j = 0; j < ff.length; ++j) {
                     var live_f = new Function(['t'].concat(params), 'return ' + ff[j] + ';');
@@ -152,12 +152,12 @@ angular
             try {
                 if (!$scope.f || !$scope.values) return;
 
-                var p = $.map($scope.values, function (x) { return parseFloat(x.value); });
-                var params = $.map($scope.values, function (x) { return x.name; });
+                var p = jQuery.map($scope.values, function (x) { return parseFloat(x.value); });
+                var params = jQuery.map($scope.values, function (x) { return x.name; });
                 var paths = [];
 
                 var ff = $scope.f;
-                if (!$.isArray(ff)) ff = [ff];
+                if (!jQuery.isArray(ff)) ff = [ff];
 
                 for (var j = 0; j < ff.length; ++j) {
                     var live_f = new Function(['t'].concat(params), 'return ' + ff[j] + ';');
