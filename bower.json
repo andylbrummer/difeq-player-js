@@ -5,7 +5,7 @@
     "andylbrummer <andybrummer@standardbeagle.com>"
   ],
   "description": "An angularjs directive for displaying differential equations inspired by Wind Map from http://hint.fm",
-  "main": "demo.js",
+  "main": ["build/dist/cotm-demo.min.js"],
   "moduleType": [
     "node"
   ],
