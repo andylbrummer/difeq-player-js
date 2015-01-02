@@ -27,7 +27,7 @@ angular
                 parameters: '=',
                 values: '='
             },
-            template: '<ul class="ctrl-parameters"><li ng-repeat="p in values"><input type="text" ng-model="p.name"><div style="display:inline-block;width:100px;" slider use-decimals max="{{p.max}}" min="{{p.min}}" step="{{p.step}}" ng-model="p.value"></div><input type="text" ng-model="p.value"></li></ul>',
+            template: '<ul class="ctrl-parameters"><li ng-repeat="p in values"><span ng-bind="p.name"></span><div slider max="{{p.max}}" min="{{p.min}}" step="{{p.step}}" ng-model="p.value"></div></li></ul>',
             controller: ['$scope', function ($scope) {
                 $scope.setValues = function () {
                     var values = [];
@@ -57,6 +57,9 @@ angular
                 var sx = c.width / (range[1] - range[0]), dx = range[0];
                 var sy = c.height / (range[3] - range[2]), dy = range[2];
                 ctx.lineWidth = $scope.lineWidth || 2.0;
+
+                ctx.fillStyle = $scope.backgroundStyle || 'rgba(30, 30, 180, 0.025)';
+                for(var i=20; i--; ) ctx.fillRect(0, 0, c.width, c.height);
 
                 var drawPaths = function (paths) {
                     ctx.lineWidth = 0.5;
@@ -206,7 +209,6 @@ angular
                 if (!$scope.f || !$scope.values) return;
 
                 var model = $scope.model || {};
-                var p = jQuery.map($scope.values, function (x) { return x.name + '=' + x.value; });
                 var params = jQuery.map($scope.values, function (x) { return x.name; });
                 var functions = [];
 
@@ -216,7 +218,10 @@ angular
 
                 var ff = $scope.f;
                 if (!jQuery.isArray(ff)) ff = [ff];
-                var body = 'var x = v[0], y = v[1], t = v[2], ' + p + '; return [' + ff[0] + '];';
+                var vars = [{name: 'x', value: 'v[0]'}, {name: 'y', value: 'v[1]'}, {name: 'z', value: 'v[2]'}].concat($scope.values);
+                var p = jQuery.map(vars, function (x) { return x.name + '=' + x.value; });
+
+                var body = 'var ' + p + '; return [' + ff[0] + '];';
                 model.live_f = new Function(['v'], body);
 
                 var traces = ($scope.model && $scope.model.traces) || [];
@@ -245,11 +250,10 @@ angular
     })
         .directive('wind2', function () {
             return functionPathBuilder(function ($scope, $attrs) {
-                try {
+//                try {
                     if (!$scope.f || !$scope.values) return;
 
                     var model = $scope.model || {};
-                    var p = jQuery.map($scope.values, function (x) { return x.name + '=' + x.value; });
                     var params = jQuery.map($scope.values, function (x) { return x.name; });
                     var functions = [];
 
@@ -259,7 +263,11 @@ angular
 
                     var ff = $scope.f;
                     if (!jQuery.isArray(ff)) ff = [ff];
-                    var body = 'var x = v[0], y = v[1], vx = v[2], vy = v[3], t = v[4], ' + p + '; return [' + ff[0] + '];';
+                    var vars = [{name: 'x', value: 'v[0]'}, {name: 'y', value: 'v[1]'}, {name: 'vx', value: 'v[2]'}, {name: 'vy', value: 'v[3]'}, {name: 't', value: 'v[4]'}]
+                                        .concat($scope.values);
+                    var p = jQuery.map(vars, function (x) { return x.name + '=' + x.value; });
+
+                    var body = 'var ' + p + '; return [' + ff[0] + '];';
                     model.live_f = new Function(['v'], body);
 
                     var traces = ($scope.model && $scope.model.traces) || [];
@@ -278,9 +286,9 @@ angular
                     $scope.model = model;
                     $scope.model.traces = traces;
                     $scope.paths = traces.map(function (t) { return t.trace; });
-                } catch (ex) {
-                    console.log(ex);
-                }
+//                } catch (ex) {
+//                    console.log(ex);
+//                }
             }, {
                 range: '=',
                 count: '='

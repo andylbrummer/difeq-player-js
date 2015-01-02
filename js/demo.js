@@ -15,11 +15,13 @@ angular
             requires: ['draw'],
             transclude: false,
             replace: true,
-            template: '<div class="btn-group">\
-                            <button class="btn" ng-click="running = true" class="glyphicon glyphicon-play-circle"><span class="glyphicon glyphicon-play"></span></button>\
-                            <button class="btn" ng-click="running = false"><span class="glyphicon glyphicon-stop"></button>\
-                            <button class="btn" ng-click="download()"><span class="glyphicon glyphicon-picture"></button>\
-                            <button class="btn" ng-click="fullScreen()"><span class="glyphicon glyphicon-fullscreen"></button>\
+            template: '<div class="demo-controls">\
+                            <button class="btn" ng-click="running = true" ng-show="!running"><span class="glyphicon glyphicon-play"></span></button>\
+                            <button class="btn" ng-click="running = false" ng-show="running"><span class="glyphicon glyphicon-pause"></button>\
+                            <div class="btn-group">\
+                                <button class="btn" ng-click="download()" class="extra"><span class="glyphicon glyphicon-picture"></button>\
+                                <button class="btn" ng-click="fullScreen()" class="extra"><span class="glyphicon glyphicon-fullscreen"></button>\
+                            </div>\
                     </div>',
             link: function (scope, element, attrs) {
                 scope.current = null;

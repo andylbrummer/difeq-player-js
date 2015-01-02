@@ -15,18 +15,21 @@
     <script src="../bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
     <script src="../bower_components/angular-bootstrap-slider/slider.js"></script>
 
-    <script src="../build/dist/cotm-demo.min.js"></script>
+    <script src="../build/dist/cotm-demo.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         canvas, body {
             display: block;
             margin: 0;
             padding: 0;
         }
 
-        canvas {
+/*        canvas {
             border: thin solid black;
         }
-
+*/
         ul {
             list-style: none;
         }
@@ -40,13 +43,27 @@
             width: 100%;
         }
 
+        .demo-controls {
+            width:100%;
+            background-color: #555;
+        }
+
+        .demo-controls .btn-group {
+            float: right;
+        }
+        .demo-controls .btn {
+            background-color: transparent;
+            color: #DDD;
+        }
+
+        .ctrl-parameters span {
+            padding: 0 10px;
+        }
+
         .ctrl-parameters input[type='text'] {
             width: 75px;
         }
 
-        .ctrl-parameters input[type='range'] {
-            width: 175px;
-        }
         :-webkit-full-screen {
             width: 100%;
             height: 100%;
@@ -55,8 +72,14 @@
 </head>
 <body>
     <div data-ng-app="app">
-        <div ng-init="graph = { params: { a:[0.5, 0.001, 1.5]}, func: 'y, a*(1-x*x)*y-x, 0.03' }; state = { running: true, t:0}; rng=[-4, 4, -4, 4]; bg='rgba(60,179,113,0.05)'; ls='#ffd700'; count=3000" ng-controller="windCtrl">
-            <canvas width="600" height="600" data-path-render="graph.paths" data-range="rng" data-background-style="bg" data-line-style="ls"></canvas>
+        <div style="width:300px" ng-init="graph = { params: { a:[0.5, 0.001, 1.5]}, func: 'y, a*(1-x*x)*y-x, 0.03' }; state = { running: true, t:0}; rng=[-4, 4, -4, 4]; bg='rgba(60,179,113,0.05)'; ls='#ffd700'; count=3000" ng-controller="windCtrl">
+            <canvas width="300" height="300" data-path-render="graph.paths" data-range="rng" data-background-style="bg" data-line-style="ls"></canvas>
+            <cm-demo cm-demo="advance()" filename="van-der-pol.png" running="state.running"></cm-demo>
+            <div data-wind data-f="graph.func" data-values="graph.values" data-paths="graph.paths" data-model="graph.model" data-t="state.t" data-count="count" data-range="rng"></div>
+            <div data-parameters="graph.params" data-values="graph.values"></div>
+        </div>
+        <div style="width:300px"  ng-init="graph = { params: { }, func: 'y, (1-x*x)*y-x, 0.03' }; state = { running: false, t:0}; rng=[-4, 4, -4, 4]; bg='rgba(60,179,113,0.05)'; ls='#ffd700'; count=3000" ng-controller="windCtrl">
+            <canvas width="300" height="300" data-path-render="graph.paths" data-range="rng" data-background-style="bg" data-line-style="ls"></canvas>
             <cm-demo cm-demo="advance()" filename="van-der-pol.png" running="state.running"></cm-demo>
             <div data-wind data-f="graph.func" data-values="graph.values" data-paths="graph.paths" data-model="graph.model" data-t="state.t" data-count="count" data-range="rng"></div>
             <div data-parameters="graph.params" data-values="graph.values"></div>
