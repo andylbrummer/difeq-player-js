@@ -7,28 +7,8 @@ module.exports = function(grunt) {
 		clean: {
 			build: {
 				src: [ 'build' ]
-			},
+			}
 		},
-
-//        copy: {
-//            css: {
-//                src: 'bower_components/lightbox2/css/lightbox.css',
-//                dest: 'sass/_lightbox.scss',
-//                options: {
-//                    process: function(content, srcpath) {
-//                        grunt.log.writeln('[msg]')
-//                        return content.replace(/\/img\//g, "/images/lightbox/")
-//                    }
-//                }
-//            },
-//            images: {
-//                expand: true,
-//                cwd: 'bower_components/lightbox2/img/',
-//                src: '*',
-//                dest: 'images/lightbox/',
-//                filter: 'isFile'
-//            }
-//        },
 
 		sass: {
 			build: {

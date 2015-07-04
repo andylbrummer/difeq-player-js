@@ -1,6 +1,7 @@
 /**
  * Created by andy on 11/16/14.
  */
+(function () {
 angular
     .module('cmDemo', [])
     .directive('cmDemo', function () {
@@ -111,3 +112,4 @@ angular
             });
         }
     }]);
+})();

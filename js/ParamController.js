@@ -54,8 +54,16 @@ angular
                 var c = $element[0];
                 var ctx = c.getContext('2d');
                 var range = $scope.range || [-1, 1, -1, 1];
-                var sx = c.width / (range[1] - range[0]), dx = range[0];
-                var sy = c.height / (range[3] - range[2]), dy = range[2];
+                var backingStore = ctx.backingStorePixelRatio ||
+                    ctx.webkitBackingStorePixelRatio ||
+                    ctx.mozBackingStorePixelRatio ||
+                    ctx.msBackingStorePixelRatio ||
+                    ctx.oBackingStorePixelRatio ||
+                    ctx.backingStorePixelRatio || 1;
+
+                var ratio = (window.devicePixelRatio || 1) / backingStore;
+                var sx = c.width / (range[1] - range[0])/ratio, dx = range[0];
+                var sy = c.height / (range[3] - range[2])/ratio, dy = range[2];
                 ctx.lineWidth = $scope.lineWidth || 2.0;
 
                 ctx.fillStyle = $scope.backgroundStyle || 'rgba(30, 30, 180, 0.025)';
