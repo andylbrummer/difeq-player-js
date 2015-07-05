@@ -1,6 +1,6 @@
 {
   "name": "difeq-player-js",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "authors": [
     "andylbrummer <andybrummer@standardbeagle.com>"
   ],
@@ -8,8 +8,7 @@
   "main": [
     "build/dist/cotm-demo.min.js"
   ],
-  "moduleType": [
-  ],
+  "moduleType": [],
   "keywords": [
     "difeq",
     "demo"
