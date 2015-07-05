@@ -9,7 +9,6 @@
     "build/dist/cotm-demo.min.js"
   ],
   "moduleType": [
-    "node"
   ],
   "keywords": [
     "difeq",
@@ -32,6 +31,7 @@
     "blob": "*",
     "canvas-toBlob": "https://github.com/eligrey/canvas-toBlob.js.git",
     "fileSaver": "https://github.com/eligrey/FileSaver.js.git",
-    "angular-bootstrap-slider": "~0.0.8"
+    "angular-bootstrap-slider": "~0.0.8",
+    "hidpi-canvas": "~1.0.9"
   }
 }
