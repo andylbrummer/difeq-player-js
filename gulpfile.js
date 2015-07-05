@@ -15,7 +15,7 @@ gulp.task('scripts-cat', function() {
             .src('js/**/*.js')
             .pipe(sourcemaps.init())
             .pipe(concat('cotm-demo.js'))
-            .pipe(sourcemaps.write('/'))
+            .pipe(sourcemaps.write())
             .pipe(gulp.dest('build/dist'))
 });
 
@@ -25,7 +25,7 @@ gulp.task('scripts-min', function() {
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('cotm-demo.min.js'))
-        .pipe(sourcemaps.write('/'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('build/dist'))
 });
 
