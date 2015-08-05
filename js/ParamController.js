@@ -27,12 +27,12 @@ angular
                 parameters: '=',
                 values: '='
             },
-            template: '<ul class="ctrl-parameters"><li ng-repeat="p in values"><span ng-bind="p.name"></span><div slider max="{{p.max}}" min="{{p.min}}" step="{{p.step}}" ng-model="p.value"></div></li></ul>',
+            template: '<ul class="ctrl-parameters"><li ng-repeat="p in values"><span ng-bind="p.name"></span><div slider max="p.max" min="p.min" step="p.step" precision="p.precision" ng-model="p.value"></div></li></ul>',
             controller: ['$scope', function ($scope) {
                 $scope.setValues = function () {
                     var values = [];
                     jQuery.each($scope.parameters, function (key, value) {
-                        values.push({ name: key, value: value[0] || 0, min: value[1] || -1, max: value[2] || 1, step: value[3] || 0.05 });
+                        values.push({ name: key, value: value[0] || 0, min: value[1] || -1, max: value[2] || 1, step: value[3] || 0.05, precision: 2 });
                     });
                     return $scope.values = values;
                 }
